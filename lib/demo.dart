@@ -1,6 +1,9 @@
+import 'dart:developer';
 
+import 'package:first_project/add.dart';
 import 'package:flutter/material.dart';
 
+import 'data/database_company.dart';
 import 'model/Company.dart';
 import 'overview.dart';
 
@@ -21,6 +24,13 @@ class _DemoPageState extends State<DemoPage> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         title: Text('Chọn công ty làm việc'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AddPage.id);
+              },
+              icon: Icon(Icons.add_circle))
+        ],
       ),
       body: ListCompany(),
     );
@@ -38,12 +48,14 @@ class _ListCompanyState extends State<ListCompany> {
   final List<Company> _companies = [];
   final List<Company> _searchCompanies = [];
   final TextEditingController _controllerSearchText = TextEditingController();
+  final DatabaseHelper _databaseHelper = DatabaseHelper();
   int selectedIndex = -1;
 
   @override
   void initState() {
     setCompanies();
-    setSearchCompanies();
+    getCompanies();
+
   }
 
   @override
@@ -58,7 +70,8 @@ class _ListCompanyState extends State<ListCompany> {
               controller: _controllerSearchText,
               onChanged: (value) {
                 setState(() {
-                    getShowList(value);
+                  getShowList(value);
+                  selectedIndex = -1;
                 });
               },
               decoration: InputDecoration(
@@ -85,27 +98,42 @@ class _ListCompanyState extends State<ListCompany> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: _searchCompanies.length,
-              itemBuilder: (context, index) {
-                return CompanyItem(
-                  company: _searchCompanies[index],
-                  selected: index == selectedIndex,
-                  onClick: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
+            child: FutureBuilder(
+              builder: (context, projectSnap) {
+                if (projectSnap.connectionState == ConnectionState.none &&
+                    projectSnap.hasData == null) {
+                  return Container(
+                    color: Colors.green,
+                    child: SizedBox(
+
+                    ),
+                  );
+                }
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _searchCompanies.length,
+                  itemBuilder: (context, index) {
+                    return CompanyItem(
+                      company: _searchCompanies[index],
+                      selected: index == selectedIndex,
+                      onClick: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                    );
                   },
                 );
               },
+              future: getCompanies(),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, OverviewPage.id,arguments: _companies[selectedIndex]);
+                  Navigator.pushNamed(context, OverviewPage.id,
+                      arguments: _companies[selectedIndex]);
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.green, minimumSize: Size.fromHeight(48)),
@@ -119,14 +147,30 @@ class _ListCompanyState extends State<ListCompany> {
     );
   }
 
+  Future getCompanies() async {
+    final companies = await _databaseHelper.queryAllRows();
+
+    for (var company in companies) {
+      if (!_companies.contains(company)) {
+        _companies.add(company);
+      }
+    }
+
+    log(companies.length.toString());
+    log(_companies.length.toString());
+    _searchCompanies.clear();
+    _searchCompanies.addAll(_companies);
+  }
+
   void setCompanies() {
     for (var i = 0; i <= 10; i++) {
-      addCompany(i.toString() + "abcdefghik" + i.toString());
+      addCompany(i, i.toString() + "abcdefghik" + i.toString());
     }
   }
 
-  void addCompany(String text) {
+  void addCompany(int i, String text) {
     var company = Company(
+      id: i,
       name: text,
     );
     _companies.add(company);
@@ -141,22 +185,15 @@ class _ListCompanyState extends State<ListCompany> {
 
   void getShowList(String value) {
     _searchCompanies.clear();
-    for(var company in _companies)
-      {
-        if(company.name.contains(value))
-          {
-            _searchCompanies.add(company);
-          }
+    for (var company in _companies) {
+      if (company.name.contains(value)) {
+        _searchCompanies.add(company);
       }
-
+    }
   }
 
-  void setSearchCompanies() {
-    _searchCompanies.addAll(_companies);
-  }
+
 }
-
-
 
 class CompanyItem extends StatelessWidget {
   const CompanyItem(

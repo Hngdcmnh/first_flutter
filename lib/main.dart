@@ -1,4 +1,5 @@
 
+import 'package:first_project/add.dart';
 import 'package:first_project/test.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         DemoPage.id: (context) => const DemoPage(),
         IntroducePage.id: (context) => const IntroducePage(),
         OverviewPage.id: (context)=> const OverviewPage(),
+        AddPage.id: (context)=> const AddPage(),
       },home: BarChartSample7(),
     );
   }

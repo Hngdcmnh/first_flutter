@@ -63,51 +63,51 @@ class _BarChartSample7State extends State<BarChartSample7> {
               child: BarChart(
                 BarChartData(
                   alignment: BarChartAlignment.spaceBetween,
-                  // borderData: FlBorderData(
-                  //   show: true,
-                  //   border: const Border.symmetric(
-                  //     horizontal: BorderSide(
-                  //       color: Color(0xFFececec),
-                  //     ),
-                  //   ),
-                  // ),
-                  // titlesData: FlTitlesData(
-                  //   show: true,
-                  //   leftTitles: AxisTitles(
-                  //     drawBehindEverything: true,
-                  //     sideTitles: SideTitles(
-                  //       showTitles: true,
-                  //       reservedSize: 30,
-                  //       getTitlesWidget: (value, meta) {
-                  //         return Text(
-                  //           value.toInt().toString(),
-                  //           style: const TextStyle(
-                  //             color: Color(0xFF606060),
-                  //           ),
-                  //           textAlign: TextAlign.left,
-                  //         );
-                  //       },
-                  //     ),
-                  //   ),
-                  //   bottomTitles: AxisTitles(
-                  //     sideTitles: SideTitles(
-                  //       showTitles: true,
-                  //       reservedSize: 36,
-                  //       getTitlesWidget: (value, meta) {
-                  //         final index = value.toInt();
-                  //         return Padding(
-                  //           padding: const EdgeInsets.only(top: 8.0),
-                  //           child: _IconWidget(
-                  //             color: BarChartSample7.dataList[index].color,
-                  //             isSelected: touchedGroupIndex == index,
-                  //           ),
-                  //         );
-                  //       },
-                  //     ),
-                  //   ),
-                  //   rightTitles: AxisTitles(),
-                  //   topTitles: AxisTitles(),
-                  // ),
+                  borderData: FlBorderData(
+                    show: true,
+                    border: const Border.symmetric(
+                      horizontal: BorderSide(
+                        color: Color(0xFFececec),
+                      ),
+                    ),
+                  ),
+                  titlesData: FlTitlesData(
+                    show: true,
+                    leftTitles: AxisTitles(
+                      drawBehindEverything: true,
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 30,
+                        getTitlesWidget: (value, meta) {
+                          return Text(
+                            value.toInt().toString(),
+                            style: const TextStyle(
+                              color: Color(0xFF606060),
+                            ),
+                            textAlign: TextAlign.left,
+                          );
+                        },
+                      ),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 36,
+                        getTitlesWidget: (value, meta) {
+                          final index = value.toInt();
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: _IconWidget(
+                              color: BarChartSample7.dataList[index].color,
+                              isSelected: touchedGroupIndex == index,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    rightTitles: AxisTitles(),
+                    topTitles: AxisTitles(),
+                  ),
                   gridData: FlGridData(
                     show: false,
                     drawVerticalLine: false,
