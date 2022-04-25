@@ -1,5 +1,6 @@
 
 import 'package:first_project/add.dart';
+import 'package:first_project/home.dart';
 import 'package:first_project/test.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         IntroducePage.id: (context) => const IntroducePage(),
         OverviewPage.id: (context)=> const OverviewPage(),
         AddPage.id: (context)=> const AddPage(),
-      },home: BarChartSample7(),
+        HomePage.id: (context)=> const HomePage(),
+      },
     );
   }
 }

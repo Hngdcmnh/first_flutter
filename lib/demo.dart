@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:first_project/add.dart';
+import 'package:first_project/home.dart';
 import 'package:flutter/material.dart';
 
 import 'data/database_company.dart';
@@ -132,7 +133,7 @@ class _ListCompanyState extends State<ListCompany> {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, OverviewPage.id,
+                  Navigator.pushNamed(context, HomePage.id,
                       arguments: _companies[selectedIndex]);
                 },
                 style: ElevatedButton.styleFrom(
