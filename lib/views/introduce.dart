@@ -1,10 +1,7 @@
 
+import 'package:first_project/views/sign_in.dart';
 import 'package:flutter/material.dart';
-
 import 'demo.dart';
-import 'sign_in.dart';
-
-
 
 class IntroducePage extends StatefulWidget {
   const IntroducePage({Key? key}) : super(key: key);

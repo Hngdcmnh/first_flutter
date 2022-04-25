@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:first_project/demo.dart';
 import 'package:flutter/material.dart';
-
-import 'data/database_company.dart';
-import 'model/Company.dart';
+import '../data/database_company.dart';
+import '../model/Company.dart';
+import 'demo.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({Key? key}) : super(key: key);

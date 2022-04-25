@@ -1,15 +1,12 @@
 
-import 'package:first_project/add.dart';
-import 'package:first_project/home.dart';
-import 'package:first_project/test.dart';
+import 'package:first_project/views/add.dart';
+import 'package:first_project/views/demo.dart';
+import 'package:first_project/views/home.dart';
+import 'package:first_project/views/sign_in.dart';
+
 import 'package:flutter/material.dart';
-
-import 'demo.dart';
-import 'introduce.dart';
-import 'overview.dart';
-import 'sign_in.dart';
-
-
+import 'views/introduce.dart';
+import 'views/overview/overview.dart';
 
 void main() {
   runApp(const MyApp());

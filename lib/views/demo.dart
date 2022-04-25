@@ -1,12 +1,10 @@
 import 'dart:developer';
-
-import 'package:first_project/add.dart';
-import 'package:first_project/home.dart';
+import 'package:first_project/views/add.dart';
 import 'package:flutter/material.dart';
+import '../data/database_company.dart';
+import '../model/Company.dart';
+import 'home.dart';
 
-import 'data/database_company.dart';
-import 'model/Company.dart';
-import 'overview.dart';
 
 class DemoPage extends StatefulWidget {
   const DemoPage({Key? key}) : super(key: key);
@@ -56,7 +54,6 @@ class _ListCompanyState extends State<ListCompany> {
   void initState() {
     setCompanies();
     getCompanies();
-
   }
 
   @override
@@ -192,8 +189,6 @@ class _ListCompanyState extends State<ListCompany> {
       }
     }
   }
-
-
 }
 
 class CompanyItem extends StatelessWidget {
