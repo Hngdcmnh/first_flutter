@@ -2,12 +2,34 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  static const String _title = 'Flutter Code Sample';
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: _title,
+      home: BarChartSample7(),
+    );
+  }
+}
+
 class BarChartSample7 extends StatefulWidget {
   const BarChartSample7({Key? key}) : super(key: key);
 
 
   static const shadowColor = Color(0xFFCCCCCC);
   static const dataList = [
+    _BarData(Color(0xFFecb206), 18, 18),
+    _BarData(Color(0xFFa8bd1a), 17, 8),
+    _BarData(Color(0xFF17987b), 10, 15),
+    _BarData(Color(0xFFb87d46), 2.5, 5),
+    _BarData(Color(0xFF295ab5), 2, 2.5),
+    _BarData(Color(0xFFea0107), 2, 2),
     _BarData(Color(0xFFecb206), 18, 18),
     _BarData(Color(0xFFa8bd1a), 17, 8),
     _BarData(Color(0xFF17987b), 10, 15),
@@ -62,61 +84,61 @@ class _BarChartSample7State extends State<BarChartSample7> {
               aspectRatio: 1.4,
               child: BarChart(
                 BarChartData(
-                  alignment: BarChartAlignment.spaceBetween,
-                  borderData: FlBorderData(
-                    show: true,
-                    border: const Border.symmetric(
-                      horizontal: BorderSide(
-                        color: Color(0xFFececec),
-                      ),
-                    ),
-                  ),
-                  titlesData: FlTitlesData(
-                    show: true,
-                    leftTitles: AxisTitles(
-                      drawBehindEverything: true,
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 30,
-                        getTitlesWidget: (value, meta) {
-                          return Text(
-                            value.toInt().toString(),
-                            style: const TextStyle(
-                              color: Color(0xFF606060),
-                            ),
-                            textAlign: TextAlign.left,
-                          );
-                        },
-                      ),
-                    ),
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 36,
-                        getTitlesWidget: (value, meta) {
-                          final index = value.toInt();
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: _IconWidget(
-                              color: BarChartSample7.dataList[index].color,
-                              isSelected: touchedGroupIndex == index,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    rightTitles: AxisTitles(),
-                    topTitles: AxisTitles(),
-                  ),
-                  gridData: FlGridData(
-                    show: false,
-                    drawVerticalLine: false,
-                    getDrawingHorizontalLine: (value) => FlLine(
-                      color: const Color(0xFFececec),
-                      dashArray: null,
-                      strokeWidth: 1,
-                    ),
-                  ),
+                  // alignment: BarChartAlignment.spaceBetween,
+                  // borderData: FlBorderData(
+                  //   show: true,
+                  //   border: const Border.symmetric(
+                  //     horizontal: BorderSide(
+                  //       color: Color(0xFFececec),
+                  //     ),
+                  //   ),
+                  // ),
+                  // titlesData: FlTitlesData(
+                  //   show: true,
+                  //   leftTitles: AxisTitles(
+                  //     drawBehindEverything: true,
+                  //     sideTitles: SideTitles(
+                  //       showTitles: true,
+                  //       reservedSize: 30,
+                  //       getTitlesWidget: (value, meta) {
+                  //         return Text(
+                  //           value.toInt().toString(),
+                  //           style: const TextStyle(
+                  //             color: Color(0xFF606060),
+                  //           ),
+                  //           textAlign: TextAlign.left,
+                  //         );
+                  //       },
+                  //     ),
+                  //   ),
+                    // bottomTitles: AxisTitles(
+                    //   sideTitles: SideTitles(
+                    //     showTitles: true,
+                    //     reservedSize: 36,
+                    //     getTitlesWidget: (value, meta) {
+                    //       final index = value.toInt();
+                    //       return Padding(
+                    //         padding: const EdgeInsets.only(top: 8.0),
+                    //         child: _IconWidget(
+                    //           color: BarChartSample7.dataList[index].color,
+                    //           isSelected: touchedGroupIndex == index,
+                    //         ),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
+                    // rightTitles: AxisTitles(),
+                    // topTitles: AxisTitles(),
+                  // ),
+                  // gridData: FlGridData(
+                  //   show: false,
+                  //   drawVerticalLine: false,
+                  //   getDrawingHorizontalLine: (value) => FlLine(
+                  //     color: const Color(0xFFececec),
+                  //     dashArray: null,
+                  //     strokeWidth: 1,
+                  //   ),
+                  // ),
                   barGroups: BarChartSample7.dataList.asMap().entries.map((e) {
                     final index = e.key;
                     final data = e.value;
@@ -127,29 +149,29 @@ class _BarChartSample7State extends State<BarChartSample7> {
                   barTouchData: BarTouchData(
                     enabled: true,
                     handleBuiltInTouches: false,
-                    touchTooltipData: BarTouchTooltipData(
-                        tooltipBgColor: Colors.transparent,
-                        tooltipMargin: 0,
-                        getTooltipItem: (
-                            BarChartGroupData group,
-                            int groupIndex,
-                            BarChartRodData rod,
-                            int rodIndex,
-                            ) {
-                          return BarTooltipItem(
-                            rod.toY.toString(),
-                            TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: rod.color!,
-                                fontSize: 18,
-                                shadows: const [
-                                  Shadow(
-                                    color: Colors.black26,
-                                    blurRadius: 12,
-                                  )
-                                ]),
-                          );
-                        }),
+                    // touchTooltipData: BarTouchTooltipData(
+                    //     tooltipBgColor: Colors.transparent,
+                    //     tooltipMargin: 0,
+                    //     getTooltipItem: (
+                    //         BarChartGroupData group,
+                    //         int groupIndex,
+                    //         BarChartRodData rod,
+                    //         int rodIndex,
+                    //         ) {
+                    //       return BarTooltipItem(
+                    //         rod.toY.toString(),
+                    //         TextStyle(
+                    //             fontWeight: FontWeight.bold,
+                    //             color: rod.color!,
+                    //             fontSize: 18,
+                    //             shadows: const [
+                    //               Shadow(
+                    //                 color: Colors.black26,
+                    //                 blurRadius: 12,
+                    //               )
+                    //             ]),
+                    //       );
+                    //     }),
                     touchCallback: (event, response) {
                       if (event.isInterestedForInteractions &&
                           response != null &&

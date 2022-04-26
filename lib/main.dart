@@ -2,6 +2,7 @@
 import 'package:first_project/views/add.dart';
 import 'package:first_project/views/demo.dart';
 import 'package:first_project/views/home.dart';
+import 'package:first_project/views/report/report.dart';
 import 'package:first_project/views/sign_in.dart';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         OverviewPage.id: (context)=> const OverviewPage(),
         AddPage.id: (context)=> const AddPage(),
         HomePage.id: (context)=> const HomePage(),
+        ReportPage.id: (context)=> const ReportPage(),
       },
     );
   }

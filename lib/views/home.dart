@@ -1,4 +1,6 @@
+import 'package:first_project/views/other/other.dart';
 import 'package:first_project/views/overview/overview.dart';
+import 'package:first_project/views/report/report.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,12 +17,8 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     OverviewPage(),
-    Text(
-      'Index 1: Báo cáo',
-    ),
-    Text(
-      'Index 2: Khác',
-    ),
+    ReportPage(),
+    OtherPage()
 
   ];
 
