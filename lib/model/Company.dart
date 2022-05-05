@@ -26,4 +26,5 @@ class Company {
   factory Company.fromMap(Map<String, dynamic> map) {
     return Company(name: map['name'], id: map['id']);
   }
+
 }

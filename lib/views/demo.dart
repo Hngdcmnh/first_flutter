@@ -135,7 +135,7 @@ class _ListCompanyState extends State<ListCompany> {
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.green, minimumSize: Size.fromHeight(48)),
-                child: Text(
+                child: const Text(
                   'Xác nhận',
                   style: TextStyle(fontSize: 20),
                 )),
@@ -219,7 +219,7 @@ class CompanyItem extends StatelessWidget {
                       Container(
                         width: 48,
                         height: 48,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.black12,
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                         child: Center(
@@ -231,7 +231,7 @@ class CompanyItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
@@ -245,7 +245,7 @@ class CompanyItem extends StatelessWidget {
                 ),
                 Visibility(
                   visible: selected,
-                  child: IconButton(
+                  child: const IconButton(
                       onPressed: null,
                       icon: Icon(
                         Icons.check_circle,
@@ -255,7 +255,7 @@ class CompanyItem extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             height: 4,
             color: Colors.black26,
           )
